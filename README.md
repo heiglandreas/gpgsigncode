@@ -1,0 +1,2 @@
+# gpgsigncode
+Testing automated codesigning
