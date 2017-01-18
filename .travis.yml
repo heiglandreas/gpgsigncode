@@ -1,10 +1,13 @@
 language: php
-env:
-  global:
-      before_install:
-        - echo $DECRYPT_KEY | gpg --passphrase-fd 0 JUnitDiffSigning.asc.gpg
-        - gpg --import JUnitDiffSigning.asc
-      script:
-        - git archive -o `git rev-parse HEAD`.zip --prefix test/ master
-        - echo $SIGN_KEY | gpg --passphrase-fd 0 --armor --detach-sig `git rev-parse HEAD`.zip
-        - gpg --verify `git rev-parse HEAD`.zip.asc `git rev-parse HEAD`.zip
+
+php: 
+  - 7.1
+
+before_install:
+  - echo $DECRYPT_KEY | gpg --passphrase-fd 0 JUnitDiffSigning.asc.gpg
+  - gpg --import JUnitDiffSigning.asc
+
+script:
+  - git archive -o `git rev-parse HEAD`.zip --prefix test/ master
+  - echo $SIGN_KEY | gpg --passphrase-fd 0 --armor --detach-sig `git rev-parse HEAD`.zip
+  - gpg --verify `git rev-parse HEAD`.zip.asc `git rev-parse HEAD`.zip
