@@ -5,7 +5,7 @@ php:
 
 before_install:
   - echo $DECRYPT_KEY | gpg --passphrase-fd 0 JUnitDiffSigning.asc.gpg
-  - gpg --import JUnitDiffSigning.asc
+  - gpg --batch --yes --import JUnitDiffSigning.asc
 
 script:
   - git archive -o `git rev-parse HEAD`.zip --prefix test/ master
