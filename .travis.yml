@@ -1,3 +1,4 @@
+language: php
 env:
   global:
       before_install:
